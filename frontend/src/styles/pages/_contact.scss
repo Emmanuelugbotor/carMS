@@ -1,0 +1,123 @@
+.contact{
+    background:#fff;
+    
+    
+    & .gallery{
+        margin-top:2rem;
+        width:100%;
+        height:60vh;
+        background: url("/src/assets/images/2.jpg");
+        position: relative;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        @include DFlex(center, center);
+        & .write_up{
+            @include DFlex(stretch, center);
+            flex-direction: column;
+            position: relative;
+            z-index:2;
+            & h1{
+                @include PrimaryHeading;
+                font-size:4rem;
+                color:#fff;
+            }
+            & h2{
+                @include secondaryHeading;
+                font-size: 2rem;
+                & span{
+                    color:var(--second); 
+                }
+            }
+        }
+        &::before{
+            content:"";
+            width:100%;
+            height:100%;
+            position: absolute;
+            inset:0;
+            background: rgba(0,0,0,.75);
+        }
+        @include spEffect;
+    }
+    & .contact_details{
+        & ul{
+            @include Grid(3rem, 25rem);
+            max-width:120rem;
+            width:100%;
+            margin:0 auto;
+            padding:10rem 0;
+            & li{
+                @include DFlex(stretch, center);
+                flex-direction: column;
+                & .icon{
+                    font-size: 8rem;
+                    color:var(--main);
+                    margin-bottom:1.5rem;
+                    transition: all .5s;
+                }
+                & p{
+                    text-align: center;
+                    color:grey;
+                }
+                &:hover .icon{
+                    animation: animateContact 1s ease-in-out infinite;
+                }
+            }
+        }
+    }
+    & .message{
+        background: rgb(240, 236, 236);
+        padding:10rem 0 ;
+        & .form_wrapper{
+            background:url('/src/assets/images/rug.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            width:100%;
+            padding:6rem 4rem;
+            max-width:80rem;
+            width:100%;
+            margin:0 auto;
+            & h1{
+                @include secondaryHeading();
+                font-size: 2.5rem; 
+                text-align: center;
+                & span{
+                    color:var(--main);
+                }
+            }
+            & form{
+                @include DFlex(stretch, flex-start);
+                flex-direction: column; 
+                & button{
+                    width:100%;
+                }
+                & .input_wrapper{
+                    @include DFlex(stretch, center);
+                    width:100%;
+                    & input{
+                        flex:1;
+                        &:first-child{
+                            margin-right:1rem;
+                        }
+                    }
+                }
+                & input{
+                    padding: 2.2rem 4.5rem 2.4rem;
+                    // border-radius: 3rem;
+                    border: none;
+                    margin-bottom:2rem;
+                    font-size:1.6rem;
+                    width:100%;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                & textarea{
+                    width:100%;
+                    margin-bottom:2rem;
+                }
+            }
+        }
+    }
+}

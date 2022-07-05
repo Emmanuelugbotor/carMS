@@ -1,0 +1,46 @@
+.sidenav{
+    position:fixed;
+    width:100%;
+    left:0;
+    top:0;
+    background: rgba(0,0,0,.25);
+    z-index:100;
+    height:100%;
+    backdrop-filter: blur(.2rem);
+    display:none;
+    @media screen and (max-width:566px){
+        display: block;
+    }
+    & .wrapper{
+        width:60%;
+        background:rgb(106, 158, 141);
+        height:100%;
+        padding:2rem ;
+        color:var(--white);
+        & .logo_container{
+            @include DFlex(stretch, center);
+            & > span{
+                font-size: 2.2rem;
+                margin-left:1rem;
+            }
+        }
+        & ul{
+            height:100%;
+            & li{
+                margin-bottom:2rem;
+                padding:1rem;
+
+                & a{
+                    @include DFlex(stretch, center);
+                    font-size: 1.8rem;
+                    & .icon{
+                        font-size: 4rem;
+                        margin-right:1rem;
+                        color:var(--white);
+                    }
+                }
+            }
+        }
+    }
+   
+}

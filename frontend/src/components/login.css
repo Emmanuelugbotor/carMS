@@ -1,0 +1,244 @@
+*,*::after,*::before{
+    padding:0;
+    margin:0;
+    box-sizing: inherit;
+}
+body{
+    box-sizing: border-box;
+   
+}
+html{
+    font-size:62.5%
+}
+
+section#registration{
+    /* max-width:100rem; */
+    margin:0 auto;
+    min-height:100vh;
+    background:rgb(233, 226, 226);
+    position:relative;
+    overflow: hidden; 
+    border-radius:10px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient( rgba(27, 23, 14, 0.5), rgba(12, 29, 12, 0.7)), url("../img/child.jpg");
+    /* background-attachment: fixed; */
+    background-position: center;
+    background-size: cover;
+
+}
+section#registration::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(3, 14, 26, 0.8);
+    clip-path: circle(19.7% at 9% 96%);
+}
+section#registration::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: #b3d80f;
+    clip-path: circle(19% at 96% 9%);
+
+}
+.registration-container{
+    height:90vh;
+    width:90%;
+    background:rgba(255,255,255,.5);
+    margin:0 auto;
+    /* margin-top:5vh; */
+    z-index: 10;
+    position: relative;
+    display: flex;
+    backdrop-filter: blur(10px);
+    border-radius:10px; 
+    overflow: hidden;
+    box-shadow: 2px 5px 12px rgba(0,0,0,.04);
+}
+.registration-container .registration-left{
+    flex:0 1 45%;
+   height:100%; 
+   background-image: url("../img/child.jpg");
+   background-attachment: fixed;
+   background-position: center;
+   background-size: cover;
+   position:relative;
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding:0 5rem;
+
+}
+.registration-container .registration-left h1,
+.registration-container .registration-left h1.mobile_view{
+    font-size:4rem;
+    color:#fff;
+    z-index: 1;
+    margin-bottom: 2rem;
+}
+.registration-container .registration-left h1.mobile_view{
+    display:none;
+}
+.registration-container .registration-left h3{
+    color:#c0c0c0c0;
+    width:25rem;
+    margin:0 auto;
+    z-index: 1;
+    text-align: center;
+    line-height: 1.6;
+    font-size: 1.3rem;
+    font-family: sans-serif;    
+}
+.registration-container .registration-left h3.mobile_view{
+    display:none;
+}
+.registration-container .registration-left a:link,
+.registration-container .registration-left a:visited,
+.registration-container .registration-right .registration-container-text input[type=submit]{
+    text-decoration: none;
+    padding:1rem 7rem;
+    border:1px solid #fff;
+    background-color: transparent;
+    border-radius:1.5rem;
+    margin-top:2.5rem;
+    color:#fff;
+    z-index: 1;
+    font-size:1.2rem;
+}
+.registration-container .registration-right .registration-container-text input[type=submit]{
+    background-color: rgba(14, 26, 14, 0.8);
+    display:block;
+    cursor:pointer;
+    width:100%;
+}
+.registration-container .registration-left::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0;
+    background-color: rgba(3, 26, 3, 0.8);
+}
+.registration-container .registration-right{
+    flex:0 1 55%;
+    display:flex;
+    justify-content: center;
+    align-items: center;   
+}
+.registration-container .registration-right .registration-container-text{
+    width:60%;
+    margin:0 auto;  
+}
+ .registration-container .registration-right .registration-container-text .form-group{
+    width:100%;
+    height:4rem;
+    margin-bottom:1rem;
+    position:relative;
+    background-color: #fff;
+    display:flex;
+    align-items: center;
+    padding-left:.9rem;
+    border-bottom: 2px solid rgb(118, 238, 118);
+}    
+.registration-container .registration-right .registration-container-text .form-group input{
+    width:100%;
+    height:100%;
+    display: inline-block;
+    border:none;
+    padding:0 0 0 1rem ;
+    transition:all .2s;
+    background-color: transparent;
+}
+.registration-container .registration-right .registration-container-text .form-group input:focus{
+    outline: none;
+}
+
+.registration-container .registration-right .registration-container-text h1{
+    font-size:3rem;
+    margin-bottom:2rem;
+}
+.display_none{
+    display:none;
+}
+@media  (max-width:724px){
+    section#registration{
+   width:100%;
+    margin:0;
+    border-radius:0;
+
+}
+.registration-container .registration-left h1{
+    font-size:3rem;
+    margin-bottom: 2rem;
+}
+.registration-container .registration-left{
+    flex:0 1 35%;
+   padding:0 2rem;
+
+}
+.registration-container .registration-right{
+    flex:0 1 65%; 
+}
+.registration-container .registration-right .registration-container-text{
+    width:80%;
+    margin:0 auto;  
+}
+}
+@media (max-width:626px){
+    .registration-container{
+    min-height:100vh;
+    height:100%;
+    margin:0 auto;
+    margin-top:5vh;
+    flex-direction: column;
+    padding-bottom:3rem;
+}
+.registration-container .registration-left a:link,
+.registration-container .registration-left a:visited,
+.registration-container .registration-left h3,
+.registration-container .registration-left h1{
+      display:none;
+}
+.display_none,
+.registration-container .registration-left h3.mobile_view,
+.registration-container .registration-left h1.mobile_view{
+    display:block;
+}
+.display_none{
+    margin-top:1rem;
+    font-size:1.2rem;
+}
+.display_none a:link,
+.display_none a:visited{
+    text-decoration: none;
+    color:green;
+    font-style: italic;
+    border-bottom: 1px solid green;
+    margin-left:.5rem;
+    animation: signInAnimate 1s infinite;
+    display: inline-block;
+}
+.registration-container .registration-left{
+    flex:0 1 35%;
+   padding:2rem 0;
+
+}
+@keyframes signInAnimate {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.08);
+    }
+}
+}

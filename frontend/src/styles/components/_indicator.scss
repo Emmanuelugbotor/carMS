@@ -1,0 +1,32 @@
+.indicator{
+    @include DFlex;
+   position:absolute;
+   bottom:7rem;
+   z-index: 100;
+    & span{ 
+        width:5rem;
+        height:5rem;
+        border:.2rem solid #fff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+       
+
+        & > *{
+            font-size:3rem;
+        }
+        &:first-child{
+            margin-right:5rem;
+        }
+        &.swiper-button-disabled{
+            cursor:not-allowed;
+            border:.2rem solid rgba(112, 102, 102, 0.596);
+            & > *{
+                font-size:3rem;
+                color:rgba(112, 102, 102, 0.596);
+            }
+        }
+    }
+}

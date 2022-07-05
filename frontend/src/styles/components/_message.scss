@@ -1,0 +1,74 @@
+.message{
+    background: rgb(240, 236, 236);
+    margin-top:-7rem;
+    padding:10rem 0 ;
+    @include DFlex(stretch, center);
+    flex-direction: column;
+    & > h1{
+        @include PrimaryHeading;
+        font-size:4rem;
+        position: relative;
+        // z-index: 21000;
+        
+    }
+    & p{
+        text-align: center;
+        max-width:60rem;
+        width:100%;
+        padding:0 2rem;
+        margin-bottom:2rem;
+    }
+    & .form_wrapper{
+        background:url('/src/assets/images/rug.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width:100%;
+        padding:6rem 4rem;
+        max-width:80rem;
+        width:100%;
+        margin:0 auto;
+        & h1{
+            @include secondaryHeading();
+            font-size: 2.5rem; 
+            text-align: center;
+            & span{
+                color:var(--main);
+            }
+        }
+        & form{
+            @include DFlex(stretch, flex-start);
+            flex-direction: column; 
+            & button{
+                width:100%;
+            }
+            & .input_wrapper{
+                @include DFlex(stretch, center);
+                width:100%;
+                & input{
+                    flex:1;
+                    &:first-child{
+                        margin-right:1rem;
+                    }
+                }
+            }
+            & input{
+                padding: 2.2rem 2.4rem;
+                // border-radius: 3rem;
+                border: none;
+                margin-bottom:2rem;
+                font-size:1.6rem;
+                width:100%;
+                &:focus{
+                    outline: none;
+                }
+            }
+            & textarea{
+                width:100%;
+                margin-bottom:2rem;
+                padding:2rem;
+                outline:none;
+                font-size:1.5rem;
+            }
+        }
+    }
+}

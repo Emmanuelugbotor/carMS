@@ -1,0 +1,21 @@
+@keyframes animateDesign {
+    0%{
+        transform:translateX(-100%);
+        opacity:0;
+    }
+    100%{
+        transform:translateX(0px);
+        opacity:1;
+    }
+}
+@keyframes animateContact {
+    0%{
+        transform:translateY(0);
+        
+    }
+    100%{
+        transform:translateY(1rem);
+      
+    }
+}
+

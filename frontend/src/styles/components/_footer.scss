@@ -1,0 +1,110 @@
+footer {
+  // min-height: 100vh;
+  @include Bg;
+  position: relative;
+  @include DFlex(stretch, center);
+  flex-direction: column;
+  padding: 10rem 0 0 0;
+  @include spEffect;
+
+  & > p {
+    max-width: 70rem;
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #fff;
+    line-height: 2;
+  }
+  ul {
+    align-self: stretch;
+    color: var(--white);
+    padding: 0 8rem;
+    margin: 6rem 0;
+    @include Grid(2rem, 25rem);
+    & li {
+      @include DFlex(stretch, center);
+      flex-direction: column;
+
+      & > .icon {
+        & > * {
+          font-size: 5rem;
+          color: var(--main);
+          transition: all 0.5s;
+          cursor: pointer;
+        }
+      }
+      &:hover > .icon {
+        & > * {
+          color: var(--white);
+        }
+      }
+      & h2 {
+        text-align: center;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+      }
+      & p {
+        text-align: center;
+      }
+      & span {
+        color: var(--main);
+      }
+    }
+  }
+  & .copyright {
+    color: var(--white);
+    margin-top: 7rem;
+    position: relative;
+    padding: 4rem 0;
+    align-self: stretch;
+    text-align: center;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.7)
+      );
+    }
+    & p {
+      position: relative;
+      font-size: 1.5rem;
+      z-index: 3;
+      & span {
+        color: var(--main);
+      }
+    }
+  }
+}
+.logo {
+  width: 9rem;
+  height: 9rem;
+  background: var(--main);
+  border-radius: 50%;
+  overflow: hidden;
+  color: #fff;
+  margin-bottom: 3rem;
+  & > span {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    @include DFlex(flex-end, center);
+    flex-direction: column;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    padding-bottom: 1rem;
+    & .icon {
+      & > * {
+        color: green;
+      }
+    }
+    & span {
+      font-size: 1rem;
+      &:first-of-type {
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+    }
+  }
+}

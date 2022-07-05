@@ -1,0 +1,85 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap");
+
+*{
+    font-family: "abril fatface";
+}
+
+
+.section-meal{
+    padding: 0px;
+    margin: 0px;
+    margin-left: 0px !important;
+}
+.meals-showcase{
+    width: 100%;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.meals-showcase li{
+    float: left;
+    display:block;
+   width: 25%;
+   background-color: #000;
+}
+.photo-meal{
+    background: linear-gradient(rgba(255, 255, 255, 0), #000);
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.photo-meal img{
+    height: auto;
+    /* max-height: 200px; */
+    /* height: 250px; */
+    width: 100%;
+    transform: scale(1.15);
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.photo-meal img:hover{
+    transform: scale(1.3);
+    opacity: 0.3;
+}
+
+.clearfix{
+    zoom: 1;
+}
+.clearfix:after{
+    content: '.';
+    clear:both;
+    display:block;
+    height:0;
+    visibility:hidden;
+}  
+
+.whatsapp{
+    position: fixed;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    font-size: larger;
+    text-align: center;
+    /* box-shadow: 15px 35px 15px black; */
+    border-radius: 50px;
+    border-color: #25d366;
+  }
+  .whatsappShadow{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    font-size: larger;
+    text-align: center;
+    border-radius: 50px;
+    z-index: 1000;
+  }
+  

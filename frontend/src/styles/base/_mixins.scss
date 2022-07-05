@@ -1,0 +1,87 @@
+@mixin DFlex($content: stretch, $items: stretch) {
+  display: flex;
+  justify-content: $content;
+  align-items: $items;
+}
+@mixin PrimaryHeading($letter: 0.6rem) {
+  font-family: var(--font-subheaders), serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: $letter;
+  color: var(--main);
+}
+@mixin secondaryHeading($color: #fff, $font: 5.8rem) {
+  font-size: $font;
+  margin-bottom: 3rem;
+  line-height: 1.15em;
+  font-family: var(--font-headers), serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  color: $color;
+}
+@mixin paragraph($color: #fff) {
+  font-size: 1.7rem;
+  line-height: 1.8em;
+  font-family: var(--font-main), sans-serif;
+  font-weight: 400;
+  margin-bottom: 4.2rem;
+  text-align: center;
+  color: $color;
+}
+@mixin Grid($gap: 2rem, $space: 30rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($space, 1fr));
+  gap: $gap;
+}
+@mixin Pseudo() {
+  font-family: var(--font-headers), serif;
+  font-weight: 700;
+  font-size: 8rem;
+  color: transparent;
+  line-height: 1em;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  position: absolute;
+  zoom: 1;
+  // filter: alpha(opacity=50);
+  // -webkit-opacity: 0.5;
+  // -moz-opacity: 0.5;
+  // opacity: 0.5;
+}
+
+@mixin modern($weight: 700) {
+  margin-bottom: 10px;
+  font-family: var(--font-subheaders), serif;
+  font-weight: $weight;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
+  color: var(--main);
+  @include DFlex(flex-start, center);
+  & span.design {
+    width: 10rem;
+    height: 0.1rem;
+    background-color: var(--main);
+    display: inline-block;
+    margin-right: 2rem;
+  }
+}
+@mixin Bg {
+  background: url("/frontend/src/assets/images/2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin spEffect {
+  &::after {
+    content: "";
+    width: 90%;
+    height: 1rem;
+    border-radius: 1rem;
+    background-color: var(--main);
+    top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+  }
+}
