@@ -5,13 +5,12 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import bg from "../assets/images/rug.jpg";
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
 import "swiper/modules/free-mode/free-mode.min.css";
 import "swiper/modules/navigation/navigation.scss";
 import "swiper/modules/thumbs/thumbs.min.css";
-import SwiperCore, {
-  EffectFade,
+import {
   Autoplay,
   Navigation,
   Pagination,

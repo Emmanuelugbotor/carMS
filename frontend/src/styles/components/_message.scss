@@ -40,31 +40,47 @@
             flex-direction: column; 
             & button{
                 width:100%;
+                @include DFlex(center, center);
             }
             & .input_wrapper{
-                @include DFlex(stretch, center);
+                @include DFlex();
                 width:100%;
-                & input{
+                
+                & .input__field{
+                    @include DFlex();
                     flex:1;
+                    flex-direction: column;
                     &:first-child{
                         margin-right:1rem;
                     }
+                    & input{
+                        width:100%;
+                       
+                    }
                 }
             }
-            & input{
-                padding: 2.2rem 2.4rem;
-                // border-radius: 3rem;
-                border: none;
-                margin-bottom:2rem;
-                font-size:1.6rem;
+            & .input__field{
                 width:100%;
-                &:focus{
-                    outline: none;
+                margin-bottom:2rem;
+                & input{
+                    padding: 2.2rem 2.4rem;
+                    // border-radius: 3rem;
+                    border: none;
+                   
+                    font-size:1.6rem;
+                    width:100%;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                & span.error-red{
+                    color:red;
+                    margin-top:1rem;
                 }
             }
+
             & textarea{
                 width:100%;
-                margin-bottom:2rem;
                 padding:2rem;
                 outline:none;
                 font-size:1.5rem;

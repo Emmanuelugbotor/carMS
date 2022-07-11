@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
-
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import 'swiper/swiper.min.css';
 import 'swiper/modules/free-mode/free-mode.min.css';
 import 'swiper/modules/navigation/navigation.scss';
 import "swiper/modules/effect-fade/effect-fade.scss"
 import 'swiper/modules/thumbs/thumbs.min.css';
-import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
+import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 // import Hamburger from './Hamburger';
 import Nav from './Nav';
 

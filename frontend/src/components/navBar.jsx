@@ -417,7 +417,7 @@ const NavBar = ({
                         <li>
                           <div
                             className="nav-link"
-                            // onClick={() => showTable("sales")}
+                            onClick={() => showTable("customersFeedback")}
                             style={{ textAlign: "center" }}
                           >
                             <Button variant="primary">
@@ -432,6 +432,43 @@ const NavBar = ({
                             style={{ textAlign: "center" }}
                           >
                             <Button variant="primary"> New Customers </Button>
+                          </div>
+                          <div
+                            className="nav-link"
+                            onClick={() => showTable("monthlyBirthday")}
+                            style={{ textAlign: "center" }}
+                          >
+                            <Button variant="primary">
+                              {" "}
+                              Monthly Birthday{" "}
+                            </Button>
+                          </div>
+                          <div
+                            className="nav-link"
+                            onClick={() => showTable("carwashmen")}
+                            style={{ textAlign: "center" }}
+                          >
+                            <Button variant="primary">
+                              {" "}
+                              car washmen perfomance{" "}
+                            </Button>
+                          </div>
+                          <div
+                            className="nav-link"
+                            onClick={() => showTable("bankTransfer")}
+                            style={{ textAlign: "center" }}
+                          >
+                            <Button variant="primary"> Bank Transfer</Button>
+                          </div>
+                          <div
+                            className="nav-link"
+                            onClick={() => showTable("phoneList")}
+                            style={{ textAlign: "center" }}
+                          >
+                            <Button variant="primary">
+                              {" "}
+                              Phone Number List{" "}
+                            </Button>
                           </div>
 
                           <div

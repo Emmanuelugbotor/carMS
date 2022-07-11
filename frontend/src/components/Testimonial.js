@@ -1,14 +1,12 @@
-import React from "react";
-import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
-
-import { Swiper, SwiperSlide } from "swiper/react";
+import FormatQuoteIcon from "@mui/icons-material/FormatQuote"
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 import "swiper/swiper.min.css";
 import "swiper/modules/free-mode/free-mode.min.css";
 import "swiper/modules/navigation/navigation.scss";
 import "swiper/modules/effect-fade/effect-fade.scss";
 import "swiper/modules/thumbs/thumbs.min.css";
 import testImg from "../assets/images/2.jpg";
-import SwiperCore, {
+import {
   Autoplay,
   EffectFade,
   Navigation,

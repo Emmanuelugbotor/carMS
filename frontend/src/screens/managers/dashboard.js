@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import url from "../../constant/url";
 import NavBar from "../../components/navBar";
@@ -23,7 +23,6 @@ import {
 import { removeAll } from "../../redux/actions/usersAction";
 import moment from "moment";
 import Helmet from "react-helmet";
-
 const Dashboard = (props) => {
   var today = moment(new Date()).format("YYYY-MM-DD");
 
@@ -74,8 +73,10 @@ const Dashboard = (props) => {
   const [editEmployerShow, setEditEmployer] = useState(false);
   const [editCustomersShow, setEditCustomersShow] = useState(false);
   const [editSalesShow, setEditSales] = useState(false);
+  const [carwashPerfomance, setCarwashPerfomance] = useState([]);
 
   const [editDat, setEdtServiceData] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
 
   const managersModalEdit = (showState, value, data) => {
     setEdtServiceData(data);
@@ -100,6 +101,11 @@ const Dashboard = (props) => {
     dailyExpensesRecord: false,
     dailySalaryAdvance: false,
     showManagers: false,
+    monthlyBirthday: false,
+    carwashmen: false,
+    phoneList: false,
+    bankTransfer: false,
+    customersFeedback: false
   });
 
   const showTable = (tableName) => {
@@ -113,6 +119,19 @@ const Dashboard = (props) => {
     altedTableName[tableName] = true;
     setTName(altedTableName);
     setCounter(counter + 1);
+    if (tableName === "carwashmen") {
+      let arr = [...allResult]
+      let combined = {}
+      for (let x of arr) {
+        if (x.workerid in combined) {
+          combined[x.workerid] += 1
+        } else {
+          combined[x.workerid] = 1
+        }
+      }
+      setCarwashPerfomance(Object.entries(combined).sort((a, b) => a[1] - b[1]).reverse())
+    }
+
   };
 
   const removeState = () => {
@@ -186,7 +205,7 @@ const Dashboard = (props) => {
 
   const deleteUser = (deleteURLs, dbName, status) => {
     var id;
-    console.log("elemetn ", deleteURLs);
+
 
     if (
       window.confirm(
@@ -211,14 +230,13 @@ const Dashboard = (props) => {
       } else {
         axios
           .get(
-            `${
-              url +
-              "deleteothers/" +
-              deleteURLs.tableID +
-              "/" +
-              deleteURLs.branchid +
-              "/" +
-              dbName
+            `${url +
+            "deleteothers/" +
+            deleteURLs.tableID +
+            "/" +
+            deleteURLs.branchid +
+            "/" +
+            dbName
             }`,
             {
               headers: {
@@ -435,7 +453,6 @@ const Dashboard = (props) => {
   let verifyEdit = (date) => {
     var editedDate = moment(date).format("YYYY-MM-DD");
     // console.log("finding verify edit", userInfo.isSuperAdmin == false);
-    console.log("finding verify edit", userInfo.isSupperAdmin);
     if (userInfo && userInfo.isSupperAdmin == false) {
       if (today > editedDate) {
         return false;
@@ -483,6 +500,20 @@ const Dashboard = (props) => {
         });
 
       axios
+        .get(`${url}getFeedbacks`, {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        })
+        .then((res) => {
+          setFeedbacks(res.data.message);
+
+        })
+        .catch((error) => {
+          setErrMsg("error occured");
+        });
+
+      axios
         .get(`${url}readAll/${state?.manager?.id}/services`, {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,
@@ -509,6 +540,7 @@ const Dashboard = (props) => {
           setcarRecordReserved(res.data.data);
           setReset(res.data.data);
           setDailySales(res.data.data);
+          // console.log(res.data)
         })
         .catch((error) => {
           setErrMsg("error occured");
@@ -657,8 +689,8 @@ const Dashboard = (props) => {
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {services !== null &&
-                      services !== undefined &&
-                      services.length > 0 ? (
+                        services !== undefined &&
+                        services.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             Service Records{" "}
@@ -873,8 +905,8 @@ const Dashboard = (props) => {
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {expenses !== null &&
-                      expenses !== undefined &&
-                      expenses.length > 0 ? (
+                        expenses !== undefined &&
+                        expenses.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             Expenses Records{" "}
@@ -996,8 +1028,8 @@ const Dashboard = (props) => {
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {dailyExpenses !== null &&
-                      dailyExpenses !== undefined &&
-                      dailyExpenses.length > 0 ? (
+                        dailyExpenses !== undefined &&
+                        dailyExpenses.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             Daily Expenses Records{" "}
@@ -1057,8 +1089,8 @@ const Dashboard = (props) => {
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {dailySalary !== null &&
-                      dailySalary !== undefined &&
-                      dailySalary.length > 0 ? (
+                        dailySalary !== undefined &&
+                        dailySalary.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             Daily Expenses Records{" "}
@@ -1117,8 +1149,8 @@ const Dashboard = (props) => {
                     <h3 style={{ paddingLeft: "30px" }}>Customers Record </h3>
                     <div className="table-responsive table-invoice">
                       {sections !== null &&
-                      sections !== undefined &&
-                      sections.length > 0 ? (
+                        sections !== undefined &&
+                        sections.length > 0 ? (
                         <>
                           <div
                             style={{
@@ -1432,8 +1464,8 @@ const Dashboard = (props) => {
                     </h3>
                     <div className="table-responsive table-invoice">
                       {dailyNewCustomer !== null &&
-                      dailyNewCustomer !== undefined &&
-                      dailyNewCustomer.length > 0 ? (
+                        dailyNewCustomer !== undefined &&
+                        dailyNewCustomer.length > 0 ? (
                         <>
                           <table className="table table-striped">
                             <tr>
@@ -1453,15 +1485,237 @@ const Dashboard = (props) => {
                               <th>createdBy</th>
                             </tr>
 
-                            {dailyNewCustomer
-                              .filter((items) => {
-                                return (
+                            {
+                              // dailyNewCustomer
+                              //   .filter((items) => {
+                              //     console.log(items)
+                              //     return (
+                              //       moment(items.createdAt).format(
+                              //         "YYYY-MM-DD"
+                              //       ) == today
+                              //     );
+                              //   })
+
+                              dailyNewCustomer?.filter(
+                                (items) =>
                                   moment(items.createdAt).format(
                                     "YYYY-MM-DD"
                                   ) == today
+                              ).map((element) => {
+                                return (
+                                  <tbody id="myTable">
+                                    <tr>
+                                      <td
+                                        className="font-weight-600"
+                                        style={{
+                                          padding: "0px",
+                                          overflow: "hidden",
+                                        }}
+                                      >
+                                        {element.pic && (
+                                          <img
+                                            alt=""
+                                            // className="rounded-circle mr-1"
+                                            style={{
+                                              width: "100%",
+                                              // height: "100%",
+
+                                            }}
+                                            src={url + element.pic}
+                                          />
+                                        )}
+                                      </td>
+                                      <td>{element.name}</td>
+                                      <td> {element.phone} </td>
+                                      <td>
+                                        {" "}
+                                        <div className={"badge badge-success"}>
+                                          {" "}
+                                          {element.plateid}{" "}
+                                        </div>
+                                      </td>
+                                      <td> {element.brand} </td>
+                                      <td> {element.color} </td>
+                                      <td> {element.model} </td>
+                                      <td> {element.type} </td>
+                                      <td> {element.dob} </td>
+                                      <td> {element.gender} </td>
+                                      <td> {element.note} </td>
+                                      <td>{dateFormater(element.createdAt)}</td>
+                                      <td> {element.first_name} </td>
+                                    </tr>
+                                  </tbody>
                                 );
-                              })
-                              .map((element) => {
+                              })}
+                          </table>
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+                )}
+                {tName.phoneList == true && (
+                  <div className="card-body p-0">
+                    <h3 style={{ paddingLeft: "30px" }}>
+                      Customer Phone Record{" "}
+                    </h3>
+                    <div className="table-responsive table-invoice">
+                      {dailyNewCustomer !== null &&
+                        dailyNewCustomer !== undefined &&
+                        dailyNewCustomer.length > 0 ? (
+                        <>
+                          <table className="table table-striped">
+                            <tr>
+                              <th>name</th>
+                              <th>phone</th>
+                              <th>Gender</th>
+
+                            </tr>
+
+                            {
+                              dailyNewCustomer?.map((element) => {
+                                return (
+                                  <tbody id="myTable">
+                                    <tr>
+                                      <td>{element?.name}</td>
+                                      <td>
+                                        <a href={`tel:${element?.phone}`}>{element?.phone}</a>
+                                      </td>
+                                      <td> {element?.gender} </td>
+
+                                    </tr>
+                                  </tbody>
+                                );
+                              })}
+                          </table>
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+                )}
+                {tName.customersFeedback === true && (
+                  <div className="card-body p-0">
+                    <h3 style={{ paddingLeft: "30px" }}>
+                      Customer Feedbacks{" "}
+                    </h3>
+                    <div className="table-responsive table-invoice">
+                      {dailyNewCustomer !== null &&
+                        dailyNewCustomer !== undefined &&
+                        dailyNewCustomer.length > 0 ? (
+                        <>
+                          <table className="table table-striped">
+                            <tr>
+                              <th>Full Name</th>
+                              <th>Phone number</th>
+                              <th>Message</th>
+                              <th>Email</th>
+                              <th>Created At</th>
+
+                            </tr>
+
+                            {
+                              feedbacks?.map((element) => {
+                                return (
+                                  <tbody id="myTable">
+                                    <tr>
+                                      <td>{element?.name}</td>
+                                      <td>
+                                        <a href={`tel:${element?.phone}`}>{element?.phone}</a>
+                                      </td>
+                                      <td> {element?.message} </td>
+                                      <td> {element?.email} </td>
+                                      <td> {element?.createdAt} </td>
+                                    </tr>
+                                  </tbody>
+                                );
+                              })}
+                          </table>
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+                )}
+                {tName.bankTransfer == true && (
+                  <div className="card-body p-0">
+                    <h3 style={{ paddingLeft: "30px" }}>
+                      Bank Transfer Record{" "}
+                    </h3>
+                    <div className="table-responsive table-invoice">
+                      {dailyNewCustomer !== null &&
+                        dailyNewCustomer !== undefined &&
+                        dailyNewCustomer.length > 0 ? (
+                        <>
+                          <table className="table table-striped">
+                            <tr>
+                              <th>Amount </th>
+                              <th>Service Type </th>
+                              <th>Payment Type </th>
+                              <th>Date </th>
+                            </tr>
+
+                            {allResult.filter((item) => item.payType === 'transfer').map((element) => {
+                              return (
+                                <tbody id="myTable">
+                                  <tr>
+                                    <td># {element.amount}</td>
+                                    <td>{element.servType}</td>
+                                    <td>{element.payType}</td>
+                                    <td> {dateFormater(element.date)}</td>
+                                  </tr>
+                                </tbody>
+                              );
+                            })}
+                          </table>
+                        </>
+                      ) : null}
+                    </div>
+                  </div>
+                )}
+
+
+                {tName.monthlyBirthday === true && (
+                  <div className="card-body p-0">
+                    <h3 style={{ paddingLeft: "30px" }}>
+                      Monthly Customers Record{" "}
+                    </h3>
+                    <div className="table-responsive table-invoice">
+                      {dailyNewCustomer !== null &&
+                        dailyNewCustomer !== undefined &&
+                        dailyNewCustomer.length > 0 ? (
+                        <>
+                          <table className="table table-striped">
+                            <tr>
+                              <th>pic</th>
+                              <th>name</th>
+                              <th>phone</th>
+                              <th>plateid</th>
+                              <th>brand</th>
+                              <th>color</th>
+
+                              <th>model</th>
+                              <th>type</th>
+                              <th>dob</th>
+                              <th>gender</th>
+                              <th>note</th>
+                              <th>createdAt</th>
+                              <th>createdBy</th>
+                            </tr>
+
+                            {
+                              // dailyNewCustomer
+                              //   .filter((items) => {
+                              //     console.log(items)
+                              //     return (
+                              //       moment(items.createdAt).format(
+                              //         "YYYY-MM-DD"
+                              //       ) == today
+                              //     );
+                              //   })
+
+
+                              dailyNewCustomer?.filter((item) => {
+                                let currentMonth = `0${new Date().getMonth() + 1}`;
+                                return item.dob.split("-")[1] === currentMonth
+                              }).map((element) => {
                                 return (
                                   <tbody id="myTable">
                                     <tr>
@@ -1512,12 +1766,34 @@ const Dashboard = (props) => {
                   </div>
                 )}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 {tName.employee == true && (
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {workers !== null &&
-                      workers !== undefined &&
-                      workers.length > 0 ? (
+                        workers !== undefined &&
+                        workers.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             Employee Record{" "}
@@ -1701,8 +1977,8 @@ const Dashboard = (props) => {
                     <div className="card-body p-0">
                       <div className="table-responsive table-invoice">
                         {allResult !== null &&
-                        allResult !== undefined &&
-                        allResult.length > 0 ? (
+                          allResult !== undefined &&
+                          allResult.length > 0 ? (
                           <>
                             <div
                               style={{
@@ -1770,6 +2046,7 @@ const Dashboard = (props) => {
                                   }
                                 />
                               </div>
+
 
                               <div>
                                 <label>End Date</label>
@@ -1872,8 +2149,8 @@ const Dashboard = (props) => {
                                             element.pgstatus === "pgd"
                                               ? "badge badge-warning"
                                               : element.pgstatus === "msc"
-                                              ? "badge badge-primary"
-                                              : "badge badge-success"
+                                                ? "badge badge-primary"
+                                                : "badge badge-success"
                                           }
                                         >
                                           {element?.plateid == "0000"
@@ -1955,8 +2232,8 @@ const Dashboard = (props) => {
                     <div className="card-body p-0">
                       <div className="table-responsive table-invoice">
                         {dailySales !== null &&
-                        dailySales !== undefined &&
-                        dailySales.length > 0 ? (
+                          dailySales !== undefined &&
+                          dailySales.length > 0 ? (
                           <>
                             <h4 style={{ padding: "20px" }}>
                               Salary Advance Record
@@ -1994,8 +2271,8 @@ const Dashboard = (props) => {
                                               element.pgstatus === "pgd"
                                                 ? "badge badge-warning"
                                                 : element.pgstatus === "msc"
-                                                ? "badge badge-primary"
-                                                : "badge badge-success"
+                                                  ? "badge badge-primary"
+                                                  : "badge badge-success"
                                             }
                                           >
                                             {element?.plateid == "0000"
@@ -2029,13 +2306,43 @@ const Dashboard = (props) => {
                     </div>
                   </>
                 )}
+                {
+                  tName.carwashmen === true && <table className="table table-striped">
+
+                    <tr>
+                      <th>Customer Name </th>
+                      <th>phone number</th>
+                      <th>car wash / service rendered </th>
+                    </tr>
+
+                    {
+
+                      carwashPerfomance?.map((element) => {
+                        return (
+                          <tbody id="myTable">
+                            <tr>
+                              <td>
+                                {
+                                  allResult?.find((x) => x.workerid === parseFloat(element[0]))?.workers_name.toUpperCase() + " " +
+                                  allResult?.find((x) => x.workerid === parseFloat(element[0]))?.workers_name_middle + " " +
+                                  allResult?.find((x) => x.workerid === parseFloat(element[0]))?.workers_name_last
+                                }
+                              </td>
+                              <td>{allResult?.find((x) => x.workerid === parseFloat(element[0]))?.workers_phone}</td>
+                              <td> {element[1]}</td>
+                            </tr>
+                          </tbody>
+                        );
+                      })}
+                  </table>
+                }
 
                 {tName.showManagers == true && (
                   <div className="card-body p-0">
                     <div className="table-responsive table-invoice">
                       {managersList !== null &&
-                      managersList !== undefined &&
-                      managersList.length > 0 ? (
+                        managersList !== undefined &&
+                        managersList.length > 0 ? (
                         <>
                           <h3 style={{ paddingLeft: "30px" }}>
                             {" "}

@@ -1381,27 +1381,40 @@ nav.nav {
       align-items: flex-start;
       flex-direction: column; }
       .message .form_wrapper form button {
-        width: 100%; }
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
       .message .form_wrapper form .input_wrapper {
         display: flex;
         justify-content: stretch;
-        align-items: center;
+        align-items: stretch;
         width: 100%; }
-        .message .form_wrapper form .input_wrapper input {
-          flex: 1; }
-          .message .form_wrapper form .input_wrapper input:first-child {
+        .message .form_wrapper form .input_wrapper .input__field {
+          display: flex;
+          justify-content: stretch;
+          align-items: stretch;
+          flex: 1;
+          flex-direction: column; }
+          .message .form_wrapper form .input_wrapper .input__field:first-child {
             margin-right: 1rem; }
-      .message .form_wrapper form input {
-        padding: 2.2rem 2.4rem;
-        border: none;
-        margin-bottom: 2rem;
-        font-size: 1.6rem;
-        width: 100%; }
-        .message .form_wrapper form input:focus {
-          outline: none; }
+          .message .form_wrapper form .input_wrapper .input__field input {
+            width: 100%; }
+      .message .form_wrapper form .input__field {
+        width: 100%;
+        margin-bottom: 2rem; }
+        .message .form_wrapper form .input__field input {
+          padding: 2.2rem 2.4rem;
+          border: none;
+          font-size: 1.6rem;
+          width: 100%; }
+          .message .form_wrapper form .input__field input:focus {
+            outline: none; }
+        .message .form_wrapper form .input__field span.error-red {
+          color: red;
+          margin-top: 1rem; }
       .message .form_wrapper form textarea {
         width: 100%;
-        margin-bottom: 2rem;
         padding: 2rem;
         outline: none;
         font-size: 1.5rem; }
