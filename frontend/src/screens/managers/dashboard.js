@@ -414,6 +414,7 @@ const Dashboard = (props) => {
   const submitManager = async (data) => {
     let dataBody = {
       ...data,
+      isSuperAdmin: data.isSuperAdmin === "true",
       // branchid: state.manager.id,
       createdAt: moment().format("YYYY-MM-DD"),
       // isSuperAdmin: false,
@@ -421,23 +422,23 @@ const Dashboard = (props) => {
 
     console.log("manger data ", dataBody)
 
-    // axios
-    //   .post(
-    //     `${url}addManagerToBranch`,
-    //     { ...dataBody },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${userInfo.token}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     toast(`${res.data.msg}`);
-    //     setErrMsg(`${res.data.msg}`);
-    //   })
-    //   .catch((error) => {
-    //     toast(`${error?.response?.data?.error}`);
-    //   });
+    axios
+      .post(
+        `${url}addManagerToBranch`,
+        { ...dataBody },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast(`${res.data.msg}`);
+        setErrMsg(`${res.data.msg}`);
+      })
+      .catch((error) => {
+        toast(`${error?.response?.data?.error}`);
+      });
   };
 
   let dispatchEdit = (element) => {
