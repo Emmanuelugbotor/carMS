@@ -416,26 +416,28 @@ const Dashboard = (props) => {
       ...data,
       // branchid: state.manager.id,
       createdAt: moment().format("YYYY-MM-DD"),
-      isSuperAdmin: false,
+      // isSuperAdmin: false,
     };
 
-    axios
-      .post(
-        `${url}addManagerToBranch`,
-        { ...dataBody },
-        {
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast(`${res.data.msg}`);
-        setErrMsg(`${res.data.msg}`);
-      })
-      .catch((error) => {
-        toast(`${error?.response?.data?.error}`);
-      });
+    console.log("manger data ", dataBody)
+
+    // axios
+    //   .post(
+    //     `${url}addManagerToBranch`,
+    //     { ...dataBody },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${userInfo.token}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     toast(`${res.data.msg}`);
+    //     setErrMsg(`${res.data.msg}`);
+    //   })
+    //   .catch((error) => {
+    //     toast(`${error?.response?.data?.error}`);
+    //   });
   };
 
   let dispatchEdit = (element) => {

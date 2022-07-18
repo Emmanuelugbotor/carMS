@@ -2248,6 +2248,25 @@ export const AddManager = (
             </div>
 
             <div className="form-group">
+              <label htmlFor="isSuperAdmin"> Make Super Admin ?</label>
+              <select
+                type="text"
+                {...register("isSuperAdmin")}
+                className="form-control"
+                name="isSuperAdmin"
+                tabIndex="1"
+              >
+                <option value={false} selected>
+                  NO
+                </option>
+                <option value={true} >
+                  YES
+                </option>
+
+              </select>
+            </div>
+
+            <div className="form-group">
               <label htmlFor="password"> Create Password</label>
               <input
                 type="text"
